@@ -1,0 +1,11 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cSpell.words": [
+        "classpath",
+        "errorclass",
+        "rawtypes",
+        "topbar",
+        "webfonts"
+    ]
+}

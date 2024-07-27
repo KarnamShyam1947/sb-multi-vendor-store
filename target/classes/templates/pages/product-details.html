@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+
+
+<title layout:fragment="title">MultiShop | Product Details</title>
+
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">Home</a>
+                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                    <span class="breadcrumb-item active">Shop Detail</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid pb-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 mb-30">
+                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner bg-light">
+                        <div class="carousel-item active">
+                            <img class="w-100 h-100" th:src="@{/img/product-1.jpg}" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 h-auto mb-30">
+                <div class="h-100 bg-light p-30">
+                    <h3 th:text="${product.name}">Product Name Goes Here</h3>
+
+                    <h3 th:text="${product.companyName}">Company Name Goes Here</h3>
+                    
+                    <h3 class="font-weight-semi-bold mb-4">[[${product.price}]] Rs.</h3>
+                    <p class="mb-4" th:text="${product.description}"></p>
+                    
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        <a th:href="@{/order/}+${product.id}" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>
+                            Place Order
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

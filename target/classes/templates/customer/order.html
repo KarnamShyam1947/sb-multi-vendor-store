@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+
+
+<style layout:fragment="style">
+    input:focus {
+        border-color: rgb(255, 221, 0) !important;
+    }
+
+    input[type=checkbox] {
+        width: 15px;
+        display: inline-block;
+        accent-color: blue;
+    }
+
+    select.error,
+    textarea.error,
+    input.error {
+        border-color: red;
+    }
+    
+</style>
+
+<title layout:fragment="title">MultiShop | Place Order</title>
+
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">Home</a>
+                    <span class="breadcrumb-item active">Place Order</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Register</span></h2>
+        <div class="container  px-xl-5">
+            <div class="col-lg mb-5">
+                <div class="contact-form bg-light p-30">
+                    <form action="" method="post" th:object="${order}">
+                        <div class="control-group mb-3">
+                            <select class="form-control" name="modeOfPayment" id="">
+                                <option value="">--SELECT MODE--</option>
+                                <option value="COD">cash on delivery</option>
+                                <option value="m1">mode1</option>
+                                <option value="m2">mode2</option>
+                            </select>
+                            <span class="text-danger" th:errors="*{modeOfPayment}"></span>
+                        </div>
+                    
+                        <div class="control-group mb-3">
+                            <input 
+                                type="text" 
+                                name="quantity" 
+                                th:errorclass="error" 
+                                placeholder="Enter quantity"
+                                class="form-control"
+                                value="1"
+                                id="qty"
+                                th:field="*{quantity}" />
+                    
+                            <span class="text-danger" th:errors="*{quantity}"></span>
+                        </div>
+                        
+                        <span>Product Name</span>
+                        <div class="control-group mb-3">
+                            <input 
+                                readonly
+                                type="text" 
+                                class="form-control"
+                                th:value="${product.name}" />
+                        </div>
+
+                        <input type="hidden" id="productPrice" th:value="${product.price}">
+
+                        <span>Total Price</span>
+                        <div class="control-group mb-3">
+                            <input 
+                                readonly
+                                type="text" 
+                                id="price"
+                                class="form-control"
+                                value="0" />
+                        </div>
+                        <button class="btn btn-primary py-2 px-4" type="submit">Place Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script layout:fragment="script">
+    let productPrice = document.getElementById("productPrice");
+    let price = document.getElementById("price");
+    let qty = document.getElementById("qty");
+
+    qty.onkeyup = () => {
+        console.log("nkn")
+        price.value = Number(productPrice.value) * Number(qty.value)
+    }
+</script>
+
+</html>

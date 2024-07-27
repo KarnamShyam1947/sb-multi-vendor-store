@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+
+    <style layout:fragment="style">
+        input:focus {
+            border-color: rgb(255, 221, 0) !important;
+        }
+
+        input[type=checkbox] {
+            width: 15px;
+            display: inline-block;
+            accent-color: yellow;
+        }
+
+        textarea.error,
+        input.error {
+            border-color: red;
+        }
+
+        input[type="file"] {
+            padding: 0 !important;
+        }
+        input[type="file"]::file-selector-button {
+            background-color: yellow;
+            border: none;
+            height: 100%;
+            width: 100px;
+            cursor: pointer;
+        }
+        
+    </style>
+
+    <title layout:fragment="title">MultiShop | Add Product</title>
+
+    <div layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row px-xl-5">
+                <div class="col-12">
+                    <nav class="breadcrumb bg-light mb-30">
+                        <a class="breadcrumb-item text-dark" href="#">Home</a>
+                        <span class="breadcrumb-item active">Add Product</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Add Product</span></h2>
+            <div class="container  px-xl-5">
+                <div class="col-lg mb-5">
+                    <div class="contact-form bg-light p-30">
+                        <div id="success"></div>
+                        <form th:object="${product}" action="" method="post" enctype="multipart/form-data">
+                            
+                            <div class="control-group mb-3">
+                                <input 
+                                    type="text" 
+                                    name="name" 
+                                    th:errorclass="error" 
+                                    placeholder="Enter Product name"
+                                    class="form-control"
+                                    th:field="*{name}" />
+
+                                <span class="text-danger" th:errors="*{name}"></span>
+                            </div>
+                            
+                            <div class="control-group mb-3">
+                                <input 
+                                    type="text" 
+                                    name="totalPrice" 
+                                    placeholder="Enter Price"
+                                    class="form-control"
+                                    th:errorclass="error" 
+                                    th:field="*{totalPrice}" />
+
+                                <span class="text-danger" th:errors="*{totalPrice}"></span>
+                            </div>
+                            
+                            <div class="control-group mb-3">
+                                <input 
+                                    th:errorclass="error"
+                                    class="form-control" 
+                                    type="file" 
+                                    name="file" />
+
+                                    <span class="text-danger" th:errors="*{file}"></span>
+                            </div>
+
+                            <div class="control-group mb-3">
+                                <textarea 
+                                    name="description" 
+                                    placeholder="Enter description.." 
+                                    class="form-control" 
+                                    th:errorclass="error" 
+                                    th:field="*{description}"></textarea>
+                                <span class="text-danger" th:errors="*{description}"></span>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary py-2 px-4" type="submit">Add Product</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</html>

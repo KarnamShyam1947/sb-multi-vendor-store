@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+
+<style layout:fragment="style">
+    input:focus {
+        border-color: rgb(255, 221, 0) !important;
+    }
+
+    input[type=checkbox] {
+        width: 15px;
+        display: inline-block;
+        accent-color: yellow;
+    }
+
+    textarea.error,
+    input.error {
+        border-color: red;
+    }
+    
+</style>
+
+<title layout:fragment="title">MultiShop | Vender Register</title>
+
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">Home</a>
+                    <span class="breadcrumb-item active">Register</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Register</span></h2>
+        <div class="container  px-xl-5">
+            <div class="col-lg mb-5">
+                <div class="contact-form bg-light p-30">
+                    <div id="success"></div>
+                    <form action="" method="post" th:object="${venderDto}">
+                        
+                        <div class="control-group mb-3">
+                            <input 
+                                type="text" 
+                                name="username" 
+                                th:errorclass="error" 
+                                placeholder="Enter Username"
+                                class="form-control"
+                                th:field="*{username}" />
+
+                            <span class="text-danger" th:errors="*{username}"></span>
+                        </div>
+                        
+                        <div class="control-group mb-3">
+                            <input 
+                                type="email" 
+                                name="email" 
+                                placeholder="Enter Email"
+                                class="form-control"
+                                th:errorclass="error" 
+                                th:field="*{email}" />
+
+                            <span class="text-danger" th:errors="*{email}"></span>
+                        </div>
+
+                        <div class="control-group mb-3">
+                            <input 
+                                type="text" 
+                                name="phoneNumber" 
+                                placeholder="Enter Phone number"
+                                class="form-control"
+                                th:errorclass="error" 
+                                th:field="*{phoneNumber}">
+
+                            <span class="text-danger" th:errors="*{phoneNumber}"></span>
+                        </div>
+                        
+                        <div class="control-group mb-3">
+                            <input 
+                                type="password" 
+                                name="password" 
+                                placeholder="Enter Password"
+                                class="form-control"
+                                th:errorclass="error" 
+                                th:field="*{password}" />
+                                
+                            <span class="text-danger" th:errors="*{password}"></span>
+                        </div>
+                        
+                        <div class="control-group mb-3">
+                            <input 
+                                type="password" 
+                                name="conformPassword" 
+                                placeholder="Re Enter Password"
+                                class="form-control"
+                                th:errorclass="error" 
+                                th:field="*{conformPassword}" />
+
+                            <span class="text-danger" th:errors="*{conformPassword}"></span>
+                        </div>
+                        <div class="control-group mb-3">
+                            <textarea name="address" placeholder="Enter Address.." class="form-control" th:errorclass="error" th:field="*{address}"></textarea>
+                            <span class="text-danger" th:errors="*{address}"></span>
+                        </div>
+                        
+                        <hr>
+
+                        <div class="control-group mb-3">
+                            <input 
+                                type="text"
+                                name="companyName" 
+                                th:errorclass="error" 
+                                placeholder="Enter Company Name"
+                                class="form-control"
+                                th:field="*{companyName}" />
+                            <span class="text-danger" th:errors="*{companyName}"></span>
+                        </div>
+                        <div class="control-group mb-3">
+                            <input 
+                                type="text" 
+                                name="companyAddress" 
+                                th:errorclass="error" 
+                                placeholder="Enter Company Address"
+                                class="form-control"
+                                th:field="*{companyAddress}" />
+
+                            <span class="text-danger" th:errors="*{companyAddress}"></span>
+                        </div>
+                        <div class="control-group mb-3">
+                            <input 
+                                type="text" 
+                                name="websiteUrl" 
+                                th:errorclass="error" 
+                                placeholder="Enter Company Website url"
+                                class="form-control"
+                                th:field="*{websiteUrl}" />
+                            <span class="text-danger" th:errors="*{websiteUrl}"></span>
+                        </div>
+
+                        <div class="control-group mb-3">
+                            <textarea 
+                                type="text" 
+                                name="description" 
+                                th:errorclass="error" 
+                                placeholder="Enter Company Description"
+                                class="form-control"
+                                th:field="*{description}"></textarea>
+                            <span class="text-danger" th:errors="*{description}"></span>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary py-2 px-4" type="submit">Vender Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
