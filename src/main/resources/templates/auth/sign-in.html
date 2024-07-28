@@ -3,13 +3,13 @@
 
 <style layout:fragment="style">
     input:focus {
-        border-color: rgb(255, 221, 0) !important;
+        border-color: blue !important;
     }
 
     input[type=checkbox] {
         width: 15px;
         display: inline-block;
-        accent-color: yellow;
+        accent-color: blue;
     }
     
 </style>
@@ -40,7 +40,9 @@
                         <div th:if="${param.error}">
                             <div th:switch="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
                                 <div th:case="'Bad credentials'">
-                                    Invalid user details
+                                    <script>
+                                        Swal.fire("Error", "Invalid user details", "error");
+                                    </script>
                                 </div>
                                 <div th:case="'User is disabled'">
                                     User account is not activated
@@ -52,7 +54,9 @@
                         </div>
 
                         <div th:if="${param.logout}">
-                            logged out successfully
+                            <script>
+                                Swal.fire("Success", "Successfully logged Out", "success");
+                            </script>
                         </div>
 
                         <div th:if="${session.msg}">
@@ -76,7 +80,7 @@
                         <div class="row justify-content-center">
                             <button class="btn btn-primary py-2 px-4" type="submit">Login</button>
                         </div>
-                        <p class="text-center mt-2">Didn't Have an account <a href="#">Create Account</a></p>
+                        <p class="text-center mt-2">Didn't Have an account <a th:href="@{/customer-register}">Create Account</a></p>
                     </form>
                 </div>
             </div>

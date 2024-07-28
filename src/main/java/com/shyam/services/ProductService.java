@@ -3,6 +3,8 @@ package com.shyam.services;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.shyam.dto.ProductDTO;
@@ -47,6 +49,10 @@ public class ProductService {
         return products;
     }
 
+    public List<ProductEntity> searchProduct(String product) {
+        return productRepository.findByNameContaining(product);
+    }
+
     public ProductEntity getProductById(int id) {
         return productRepository.findById(id);
     }
@@ -59,7 +65,15 @@ public class ProductService {
         return productRepository.findDistinctByCompanyName();
     }
    
-
+    public Page<ProductEntity> getProductsWithPages(int offset, int page) {
+        PageRequest pageRequest = PageRequest.of(page, offset);
+        Page<ProductEntity> pages = productRepository.findAll(pageRequest);
+        // pages.getContent(); - content
+        // pages.getSize() - current size
+        // pages.getTotalPages - total pages
+        
+        return pages;
+    }
 
     public List<ProductEntity> getProductsByCompanyName(String companyName) {
         return productRepository.findByCompanyName(companyName);

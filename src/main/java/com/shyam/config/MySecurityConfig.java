@@ -23,6 +23,8 @@ public class MySecurityConfig {
         "js/**",
         "webfonts/**",
         "test",
+        "/",
+        "shop",
         "contact",
         "/forgot-password", 
         "/process-set-password",

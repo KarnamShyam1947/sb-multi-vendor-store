@@ -23,7 +23,7 @@
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner bg-light">
                         <div class="carousel-item active">
-                            <img class="w-100 h-100" th:src="@{/img/product-1.jpg}" alt="Image">
+                            <img class="w-100 h-100" th:src="@{${product.imageUrl}}" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -33,11 +33,35 @@
                 <div class="h-100 bg-light p-30">
                     <h3 th:text="${product.name}">Product Name Goes Here</h3>
 
-                    <h3 th:text="${product.companyName}">Company Name Goes Here</h3>
                     
                     <h3 class="font-weight-semi-bold mb-4">[[${product.price}]] Rs.</h3>
                     <p class="mb-4" th:text="${product.description}"></p>
-                    
+                    <hr>
+                    <h3>Vendor Details</h3>
+                    <table>
+                        <tr>
+                            <td>Company Name</td>
+                            <td th:text="${product.companyName}"></td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td><p th:text="${product.vender.username}">Company Name Goes Here</p></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><p th:text="${product.vender.email}">Company Name Goes Here</p></td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number</td>
+                            <td><p th:text="${product.vender.phoneNumber}">Company Name Goes Here</p></td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td><p th:text="${product.vender.address}">Company Name Goes Here</p></td>
+                        </tr>
+
+                    </table>
+
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <a th:href="@{/order/}+${product.id}" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>
                             Place Order

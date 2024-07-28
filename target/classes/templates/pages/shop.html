@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
 
+<style layout:fragment="style">
+    img {
+        height: 300px !important;
+
+    }
+</style>
 
 <title layout:fragment="title">MultiShop | Product Details</title>
 
@@ -21,14 +27,14 @@
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="container">
-                <h6>Search for : Product01</h6>
+                <h6 th:if="${query != ''}">Search for : [[${query}]]</h6>
                 <div class="col-lg col-md-8">
                     <div class="row pb-3">
 
-                        <div th:each="product : ${products}" class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div th:each="product : ${productPages.getContent()}" class="col-lg-4 col-md-6 col-sm-6 pb-1">
                             <div class="product-item bg-light mb-4">
                                 <div class="product-img position-relative overflow-hidden">
-                                    <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                                    <img class="img-fluid w-100" th:src="@{${product.imageUrl}}" alt="">
                                 </div>
                                 <div class="text-center py-4">
                                     <a 
@@ -47,16 +53,32 @@
                             </div>
                         </div>
                         
-                        <div class="col-12">
-                            <nav>
-                              <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                              </ul>
-                            </nav>
+                        
+                        <div class="col-12 ">
+                            <div class="row justify-content-between">
+                                <p>showing [[${productPages.getContent().size()}]] / [[${products.size()}]]</p>
+                                <nav>
+                                  <ul class="pagination ">
+                                    <li
+                                        th:classappend="${page == '1' ? 'disabled':''}"
+                                        class="page-item disable">
+                                        <a class="page-link" th:href="@{?page=}+${page - 1}">Previous</a>
+                                    </li>
+                                    <li
+                                        class="page-item"
+                                        th:classappend="${page == item ? 'active':''}"
+                                        th:each="item : ${#numbers.sequence(1,productPages.getTotalPages() - 1)}">
+                                        <a class="page-link" th:href="@{?page=}+${item}">[[${item}]]</a>
+                                
+                                    </li>
+                                    <li class="page-item">
+                                        <a
+                                            th:href="@{?page=}+${page + 1}"
+                                            class="page-link">Next</a>
+                                    </li>
+                                  </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>

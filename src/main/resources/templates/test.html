@@ -1,61 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout.html}">
+<html>
 
+<head>
+    <title>Test</title>
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+</head>
 
-<title layout:fragment="title">MultiShop | Product Details</title>
-
-<div layout:fragment="content">
-
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Shop List</span>
-                </nav>
-            </div>
-        </div>
+<body>
+    <div id="myid">
+        Hello, World
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti esse, ipsum facilis voluptas distinctio eos incidunt saepe excepturi tenetur quo quae qui nulla, eaque nesciunt vel assumenda magnam earum ea?
     </div>
+    <script>
+        function loadGoogleTranslate()
 
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="container">
-                <div class="col-lg col-md-8">
-                    <div class="row pb-3">
-
-                        <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
-                                <div class="product-img position-relative overflow-hidden">
-                                    <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
-                                </div>
-                                <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                                    <br>
-                                    <span>Company Name Goes Here</span>
-                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                        <h5>$123.00</h5><h6 class="text-muted ml-2"></h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-12">
-                            <nav>
-                              <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                              </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        {
+    
+            new google.translate.TranslateElement("myid")
+    
+        }
+    </script>
+</body>
 
 </html>

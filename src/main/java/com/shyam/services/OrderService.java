@@ -3,7 +3,6 @@ package com.shyam.services;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shyam.entities.OrderEntity;
@@ -13,17 +12,15 @@ import com.shyam.repositories.OrderRepository;
 import com.shyam.repositories.ProductRepository;
 import com.shyam.repositories.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class OrderService {
 
-    @Autowired
-    private UserRepository userRepository;
-    
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
 
     public void makeOrder(int productId, int customerId, int quantity, String mode) {
         UserEntity customer = userRepository.findById(customerId);
